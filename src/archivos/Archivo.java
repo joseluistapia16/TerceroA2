@@ -45,6 +45,8 @@ public class Archivo implements DaoUsers{
 
     @Override
     public List<Usuario> getAll(String ruta) {
+        
+        // Esto es una prueba
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
