@@ -6,9 +6,12 @@ package archivos;
 
 import domain.Usuario;
 import implementsUser.DaoUsers;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author user
  */
-public class Archivo implements DaoUsers{
+public class Archivo implements DaoUsers {
 
     @Override
     public String create(String ruta, String msg, boolean modo) {
@@ -45,13 +48,23 @@ public class Archivo implements DaoUsers{
 
     @Override
     public List<Usuario> getAll(String ruta) {
-        
-        // Esto es una prueba
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Usuario> lista = new ArrayList<Usuario>();
+        try (BufferedReader contenido = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = contenido.readLine()) != null) {
+                String[] fila = linea.split(";");
+                Usuario obj = new Usuario(fila[0], fila[1], fila[2], fila[3], fila[4]);
+                lista.add(obj);
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura: " + ex.getMessage());
+        }
+        return lista;
     }
 
     @Override
     public Usuario getOne(String ruta, String usuario) {
+        // Prueba tercero A
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -64,5 +77,5 @@ public class Archivo implements DaoUsers{
     public String delete(String ruta, String usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

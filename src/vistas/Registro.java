@@ -21,6 +21,7 @@ public class Registro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        // cambio 27 de agosto 2024
     }
 
     /**
