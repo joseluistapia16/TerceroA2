@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package archivos;
 
 import domain.Usuario;
@@ -65,17 +61,84 @@ public class Archivo implements DaoUsers {
     @Override
     public Usuario getOne(String ruta, String usuario) {
         // Prueba tercero A
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Usuario> lista = new ArrayList<Usuario>();
+        lista = getAll(ruta);
+        Usuario obj = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (usuario.equals(lista.get(i).getUsuario())) {
+                obj = lista.get(i);
+                break;
+
+            }
+
+        }
+        return obj;
+        // Prueba tercero A
+
     }
 
     @Override
     public String update(String ruta, Usuario obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Usuario> lista = getAll(ruta);
+        String datos = "";
+        String mensaje = " ";
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if (obj.getUsuario().equals(lista.get(i).getUsuario())) {
+                pos = i;
+                break;
+            }
+
+        }
+              // System.out.println(pos);
+        if (pos != -1) {
+            lista.set(pos, obj);
+            for (int i = 0; i < lista.size(); i++) {
+                datos = datos + lista.get(i).getUsuario() + ";" + lista.get(i).getContra()
+                        + ";" + lista.get(i).getNombre() + ";" + lista.get(i).getApellidos() + ";"
+                        + lista.get(i).getEmail() + ";\n";
+            }
+           // System.out.println(datos);
+           create(ruta, datos, false);
+           mensaje = "Sus datos han sido actualizados exitosamente";
+        }
+        else{
+            mensaje = "Los datos no han sido actualizados";
+        }
+
+        return mensaje;
+
     }
 
     @Override
     public String delete(String ruta, String usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Usuario> lista = getAll(ruta);
+        String datos = "";
+        String mensaje = " ";
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if (usuario.equals(lista.get(i).getUsuario())) {
+                pos = i;
+                break;
+            }
+        }
+              // System.out.println(pos);
+        if (pos != -1) {
+            lista.remove(pos);
+            for (int i = 0; i < lista.size(); i++) {
+                datos = datos + lista.get(i).getUsuario() + ";" + lista.get(i).getContra()
+                        + ";" + lista.get(i).getNombre() + ";" + lista.get(i).getApellidos() + ";"
+                        + lista.get(i).getEmail() + ";\n";
+            }
+//           System.out.println(datos);
+           create(ruta, datos, false);
+           mensaje = "Sus datos han sido eliminados exitosamente";
+        }
+        else{
+            mensaje = "Los datos no han sido eliminados";
+        }
+
+        return mensaje;
     }
 
 }

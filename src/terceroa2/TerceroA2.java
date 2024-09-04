@@ -14,10 +14,23 @@ public class TerceroA2 {
           String ruta = "C:\\Users\\user\\Documents\\NetBeansProjects\\TerceroA2\\usuarios.csv";
         List<Usuario>lista= arch.getAll(ruta);
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i).getApellidos());   
+            System.out.println(lista.get(i).getNombre()+ " " + lista.get(i).getApellidos());   
         }
+//        var usuario = "Diego Rivera";
+//        Usuario obj = arch.getOne(ruta, usuario);
+//        if (obj == null){
+//            System.out.println("Error");
+//        }  
+//        else{
+//            System.out.println(obj.getUsuario()+ " " + obj.getNombre()+ " "+ obj.getApellidos());
+//        }
 //        var ven = new Ventana1();
 //        ven.setVisible(true);
+//        Usuario obj = new Usuario("AndresPanchana1", "1222", "Juan", "Solis", "juankun@gmail.com");
+//        var msg = arch.update(ruta, obj);
+//        System.out.println(msg);
+          var msg1 = arch.delete(ruta, "AndresPanchana");
+          System.out.println(msg1);
     }
     
 }
