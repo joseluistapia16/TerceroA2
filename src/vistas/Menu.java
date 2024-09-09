@@ -1,23 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package vistas;
 
-/**
- *
- * @author user
- */
-public class Menu extends javax.swing.JDialog {
+import domain.Usuario;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-    /**
-     * Creates new form Menu
-     */
+
+public class Menu extends javax.swing.JDialog {
+    String rutaImagen = "C:\\Users\\user\\Documents\\NetBeansProjects\\TerceroA2\\src\\imagenes\\imagenJava.jpg";
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("", "jpg");
+    
     public Menu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarImagen();
+        //imagen.setText("Imagen de prueba");
     }
-
+    
+    public Menu(java.awt.Frame parent, boolean modal, Usuario obj) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Usuario: " + obj.getNombre() + " "+ obj.getApellidos()+ ".");
+        cargarImagen();
+    }
+    
+    private void cargarImagen(){
+        JFileChooser dlg = new JFileChooser();
+        dlg.setFileFilter(filter);
+        var file = rutaImagen;
+        imagen.setIcon(new ImageIcon(file));
+        ImageIcon icon = new ImageIcon(file);
+        Image new1 = icon.getImage();
+        Image new2 = new1.getScaledInstance(625, 426, Image.SCALE_SMOOTH);
+        System.out.println(file + " " + new2.toString());
+        ImageIcon new3 = new ImageIcon(new2);
+        imagen.setIcon(new3);
+        //imagen.setSize(390, 560);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,49 +50,70 @@ public class Menu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imagen = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jMenu1.setText("Archivo");
 
         jMenu3.setText("Gestion de Estudiantes");
 
-        jMenuItem1.setText("Registro");
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem3.setText("Consulta");
-        jMenu3.add(jMenuItem3);
-
-        jMenuItem4.setText("Actualizar");
+        jMenuItem4.setText("Mantenimiento");
         jMenu3.add(jMenuItem4);
-
-        jMenuItem5.setText("Eliminar");
-        jMenuItem5.setToolTipText("");
-        jMenu3.add(jMenuItem5);
 
         jMenu1.add(jMenu3);
 
-        jMenu4.setText("Gestion de Docentes");
+        jMenu4.setText("Gestion de Usuarios");
+
+        jMenuItem6.setText("Mantenimiento");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
         jMenu1.add(jMenu4);
         jMenu1.add(jSeparator1);
 
         jMenu5.setText("Salir");
+
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem1);
+
         jMenu1.add(jMenu5);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("About");
+
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem2.setText("Acerca de ..");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -78,15 +122,35 @@ public class Menu extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      /*About obj = new About();*/
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        var ges = new GestionUsuarios(new JFrame(), true);
+        ges.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +195,7 @@ public class Menu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imagen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -138,9 +203,9 @@ public class Menu extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
