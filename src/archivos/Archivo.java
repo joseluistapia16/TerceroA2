@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author user
  */
 public class Archivo implements DaoUsers {
-
+// Prueba
     @Override
     public String create(String ruta, String msg, boolean modo) {
         String mensaje = null;
@@ -68,13 +68,10 @@ public class Archivo implements DaoUsers {
             if (usuario.equals(lista.get(i).getUsuario())) {
                 obj = lista.get(i);
                 break;
-
             }
-
         }
         return obj;
         // Prueba tercero A
-
     }
 
     @Override
@@ -141,4 +138,19 @@ public class Archivo implements DaoUsers {
         return mensaje;
     }
 
+        public Usuario getLogin(String ruta, String usuario, String password) {
+        // Prueba tercero A
+        List<Usuario> lista = new ArrayList<Usuario>();
+        lista = getAll(ruta);
+        Usuario obj = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (usuario.equals(lista.get(i).getUsuario())&& password.equals(lista.get(i).getContra())){
+                obj = lista.get(i); 
+                break;
+            }
+        }
+        return obj;
+        // Prueba tercero A
+    }
+  
 }
