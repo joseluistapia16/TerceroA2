@@ -17,20 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Usuario {
-    private Integer id_usuario;
+
     private String usuario;
     private String contra;
     private String nombre;
     private String apellidos;
     private String email;
-    
-    @Builder
-    public Usuario(String usuario,String contra,String nombre,String apellidos, String email) {
-        this.usuario = usuario;
-        this.contra = contra;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email=email;
-    }
-    
+    private String estado;
 }

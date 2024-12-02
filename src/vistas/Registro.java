@@ -174,7 +174,7 @@ public class Registro extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void grabar() {
-        Usuario obj = new Usuario(usuario.getText(), contra.getText(), nombre.getText(), apellidos.getText(), email.getText());
+        Usuario obj = new Usuario(usuario.getText(), contra.getText(), nombre.getText(), apellidos.getText(), email.getText(),"A");
         String msg = obj.getUsuario() + ";" + obj.getContra() + ";" + obj.getNombre() + ";" + obj.getApellidos() + ";" + obj.getEmail() + ";\n";
 
         String mensaje = arch.create(ruta, msg, true);

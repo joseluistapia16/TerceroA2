@@ -217,7 +217,7 @@ public class EditarRegistro extends javax.swing.JDialog {
     }//GEN-LAST:event_edit1ActionPerformed
     
     private void grabar(){
-        Usuario obj = new Usuario(usuario.getText(), contra.getText(),nombre.getText(), apellidos.getText(), email.getText());
+        Usuario obj = new Usuario(usuario.getText(), contra.getText(),nombre.getText(), apellidos.getText(), email.getText(),"A");
             var msg = arch.update(ruta, obj);            
             JOptionPane.showMessageDialog(null, msg);  
     }

@@ -9,17 +9,18 @@ import domain.Usuario;
 import implementsUser.BDaoUsuario;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.ResultSet;
 /**
  *
  * @author user
  */
 public class CrudUsuario implements BDaoUsuario {
 
-    private String base = "terceroa";
+    private String base = "terceroa1";
     private Conexion conexion = null;
 
     public CrudUsuario() {
@@ -32,7 +33,8 @@ public class CrudUsuario implements BDaoUsuario {
         var sql = "Insert into usuario(usuario, pasword, nombres, apellidos, correo, estado) "
                 + "values (?,?,?,?,?,?)";
         try (
-                Connection conect = this.conexion.conectar(base); PreparedStatement st = conect.prepareStatement(sql)) {
+                Connection conect = this.conexion.conectar(base); 
+                PreparedStatement st = conect.prepareStatement(sql)) {
             st.setString(1, obj.getUsuario());
             st.setString(2, obj.getContra());
             st.setString(3, obj.getNombre());
@@ -49,12 +51,27 @@ public class CrudUsuario implements BDaoUsuario {
 
     @Override
     public List<Usuario> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       List<Usuario>lista=new ArrayList<>();
+       String query = "select * from usuario where estado='A'";
+       try(Connection conect = this.conexion.conectar(base);
+               PreparedStatement st = conect.prepareStatement(query);
+               ResultSet rs = st.executeQuery()){
+            while(rs.next()){
+                var obj = new Usuario(rs.getString("usuario"),
+                rs.getString("pasword"), rs.getString("nombres"),
+                        rs.getString("apellidos"), rs.getString("correo"),
+                rs.getString("estado"));
+                lista.add(obj);
+            }
+       } catch (SQLException ex){
+           
+       }
+        return lista;
     }
 
     @Override
     public Usuario getOne(String idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return null;
     }
 
     @Override
