@@ -16,7 +16,7 @@ import java.util.List;
 public class PruebaBD {
 
     public static void main(String[] args) {
-        consulta();
+        Actualizar();
     }
 
     private static void base() {
@@ -35,5 +35,13 @@ public class PruebaBD {
             System.out.println(lista.get(i).toString());
         }
     }
+    
+    private static void Actualizar() {
+        CrudUsuario crud = new CrudUsuario();
+        var usu = new Usuario("pepe", "0930347166", "Jose Manuel", "ernesto zambrano", "linojose@gmail.com", "B");
+        var res = crud.update(usu);
+        System.out.println(res);
+    }
+    
 
 }

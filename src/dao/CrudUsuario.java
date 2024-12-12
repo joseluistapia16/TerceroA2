@@ -76,7 +76,24 @@ public class CrudUsuario implements BDaoUsuario {
 
     @Override
     public String update(Usuario obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String res = "Datos Actualizados";
+        var sql = "Update usuario set pasword=?, nombres=?, apellidos=?, correo=? Where usuario=?";
+                
+        try (
+                Connection conect = this.conexion.conectar(base); 
+                PreparedStatement st = conect.prepareStatement(sql)) {
+            st.setString(1, obj.getContra());
+            st.setString(2, obj.getNombre());
+            st.setString(3, obj.getApellidos());
+            st.setString(4, obj.getEmail());
+            st.setString(5, obj.getUsuario());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            res = "" + ex;
+            Logger.getLogger(CrudUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+
     }
 
     @Override

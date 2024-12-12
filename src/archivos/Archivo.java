@@ -45,16 +45,16 @@ public class Archivo implements DaoUsers {
     @Override
     public List<Usuario> getAll(String ruta) {
         List<Usuario> lista = new ArrayList<Usuario>();
-//        try (BufferedReader contenido = new BufferedReader(new FileReader(ruta))) {
-//            String linea;
-//            while ((linea = contenido.readLine()) != null) {
-//                String[] fila = linea.split(";");
-//                Usuario obj = new Usuario(fila[0], fila[1], fila[2], fila[3], fila[4]);
-//                lista.add(obj);
-//            }
-//        } catch (IOException ex) {
-//            System.out.println("Error de lectura: " + ex.getMessage());
-//        }
+        try (BufferedReader contenido = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = contenido.readLine()) != null) {
+                String[] fila = linea.split(";");
+                Usuario obj = new Usuario(fila[0], fila[1], fila[2], fila[3], fila[4],"A");
+                lista.add(obj);
+            }
+        } catch (IOException ex) {
+            System.out.println("Error de lectura: " + ex.getMessage());
+        }
         return lista;
     }
 
